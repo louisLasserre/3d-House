@@ -1,22 +1,35 @@
 {
-  "name": "weather-house",
+  "name": "3d-house",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gltf": "gltfjsx house-transformed.gltf --types"
   },
   "dependencies": {
-    "@types/node": "20.2.3",
-    "@types/react": "18.2.6",
-    "@types/react-dom": "18.2.4",
-    "eslint": "8.41.0",
-    "eslint-config-next": "13.4.3",
-    "next": "13.4.3",
+    "@react-three/drei": "^9.88.11",
+    "@react-three/fiber": "^8.15.9",
+    "@react-three/postprocessing": "2.15.10",
+    "@types/node": "20.8.10",
+    "@types/react": "18.2.34",
+    "@types/react-dom": "18.2.14",
+    "eslint": "8.52.0",
+    "eslint-config-next": "14.0.1",
+    "gltfjsx": "^6.2.14",
+    "jotai": "^2.5.0",
+    "leva": "^0.9.35",
+    "next": "14.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.0.4"
+    "three": "^0.158.0",
+    "typescript": "5.2.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/three": "^0.158.1",
+    "@types/uuid": "^9.0.6"
   }
 }
