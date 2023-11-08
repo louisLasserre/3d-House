@@ -4,12 +4,11 @@ Command: npx gltfjsx@6.2.14 house-transformed.gltf --types
 */
 
 import * as THREE from "three";
-import React, { useRef, useState } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import { PrimitiveAtom, atom, useAtom } from "jotai";
-import { useTransformMode } from "@/hooks/useTransformMode";
-import useMeshControls from "@/hooks/useMeshControls";
+import { PrimitiveAtom, atom } from "jotai";
+
 import { v4 } from "uuid";
 import { TObjectType } from "../@types";
 import { Scene } from "../Scene";
@@ -68,7 +67,7 @@ type GLTFResult = GLTF & {
     Wood: THREE.MeshStandardMaterial;
     MatBlack: THREE.MeshStandardMaterial;
     WindowLight: THREE.MeshStandardMaterial;
-    Blue: THREE.MeshStandardMaterial;
+
     Curtains: THREE.MeshStandardMaterial;
     YellowLight: THREE.MeshStandardMaterial;
     MatWhite: THREE.MeshStandardMaterial;
@@ -77,11 +76,10 @@ type GLTFResult = GLTF & {
     Donut: THREE.MeshStandardMaterial;
     DonutCream: THREE.MeshStandardMaterial;
     LightGreen: THREE.MeshStandardMaterial;
-    BlackMetal: THREE.MeshStandardMaterial;
   };
 };
 
-const makeObject = (node) => {
+const makeObject = (node: any) => {
   if (node.children.length === 0) {
     return {
       type: node.type,
@@ -100,7 +98,7 @@ const makeObject = (node) => {
     type: node.type,
     hovered: false,
     id: v4(),
-    children: node.children.map((children) => makeObject(children)),
+    children: node.children.map((children: any) => makeObject(children)),
     data: {
       geometry: node.geometry,
       position: node.position,

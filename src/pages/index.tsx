@@ -1,25 +1,17 @@
-import { Suspense, useEffect, useMemo } from "react";
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 
-import { useControls } from "leva";
 import { Canvas } from "@react-three/fiber";
 
 import Box from "@/components/Box";
-import Floor from "@/components/Floor";
+
 import LightBulb from "@/components/LightBulb";
 import Controls from "@/components/Controls";
-import LoadModel from "@/components/LoadModel";
+
 import { useAtom, useAtomValue } from "jotai";
 import { targetAtom, transformModeAtom } from "@/atoms/controls";
 import LevaGlobalInterface from "@/components/LevaGlobalInterface";
-import { House } from "@/components/Meshs/House";
 
-import {
-  Selection,
-  Outline,
-  EffectComposer,
-} from "@react-three/postprocessing";
 import { Select, Sky } from "@react-three/drei";
 import { Model } from "@/components/Meshs/Model";
 

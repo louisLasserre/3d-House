@@ -26,7 +26,7 @@ export function useTransformMode() {
     if (transformMode != mode) {
       set({ mode: transformMode });
     }
-  }, [transformMode, set]);
+  }, [transformMode, set, mode]);
 
   return {
     transformMode: mode,
