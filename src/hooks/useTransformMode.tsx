@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 
 import {
   TTransformModeAtom,
@@ -7,6 +7,7 @@ import {
 } from "@/atoms/controls";
 import { useAtom } from "jotai";
 import { useControls } from "leva";
+import { Color } from "three";
 
 export function useTransformMode() {
   const [target, setTarget] = useAtom(targetAtom);
@@ -19,8 +20,32 @@ export function useTransformMode() {
       onChange: (v: TTransformModeAtom) => setTransformMode(v),
     },
   };
+  const name = target.name;
 
-  const [{ mode }, set] = useControls(() => options);
+  const [{ mode, target: menuTarget }, set] = useControls(() => {
+    let color = "";
+
+    if (target.color) {
+      color = new Color(target.color[0]).getHexString() as string;
+    }
+    return {
+      ...options,
+      target: "",
+      color: "#fff",
+    };
+  }, [target.color]);
+
+  useMemo(() => {
+    if (!target || !target.name) {
+      set({ target: "" });
+      set({ color: "#fff" });
+      return;
+    }
+
+    console.log(target.color);
+    set({ target: target.name });
+    set({ color: `#${target.color[0]}` as string });
+  }, [target]);
 
   useEffect(() => {
     if (transformMode != mode) {

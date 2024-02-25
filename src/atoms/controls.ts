@@ -4,10 +4,12 @@ const controlModes = ["translate", "rotate", "scale"] as const;
 
 export type TControlModelAtom = {
   name: string | null;
+  color: THREE.Color[] | null;
 };
 
 export const targetAtom = atom<TControlModelAtom>({
-  name: null,
+  name: "",
+  color: null,
 });
 
 export type TTransformModeAtom = "translate" | "rotate" | "scale";

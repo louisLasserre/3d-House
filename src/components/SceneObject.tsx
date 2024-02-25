@@ -11,10 +11,18 @@ interface SceneObjectProps {
 export function SceneObject({ object }: SceneObjectProps) {
   const [values, setObject] = useAtom(object);
 
-  const { position, scale, geometry, material, rotation } = values.data;
+  const { position, scale, geometry, material, rotation, color } = values.data;
   const { type, hovered, children, id } = values;
 
-  const { meshEvents, target } = useMeshControls(id);
+  let Mycolor = [color?.getHexString()];
+
+  if (!color && type === "Group") {
+    Mycolor = children!.map((child) => child.data.color?.getHexString());
+  }
+
+  console.log(Mycolor);
+
+  const { meshEvents, target } = useMeshControls(id, { color: Mycolor });
   const setHover = (x: boolean) =>
     setObject((prev) => ({ ...prev, hovered: x }));
   const ObjectComponent = type === "Mesh" ? "mesh" : "group";
@@ -37,7 +45,7 @@ export function SceneObject({ object }: SceneObjectProps) {
       {...meshEvents}
       name={id}
     >
-      {type === "Mesh" && (
+      {/* {type === "Mesh" && (
         <Edges
           visible={target.name === id || hovered}
           scale={1.1}
@@ -49,9 +57,9 @@ export function SceneObject({ object }: SceneObjectProps) {
             depthTest={false}
           />
         </Edges>
-      )}
+      )} */}
 
-      {/* {type === "Mesh" && (
+      {type === "Mesh" && (
         <Outlines
           visible={target.name === id || hovered}
           transparent
@@ -65,7 +73,7 @@ export function SceneObject({ object }: SceneObjectProps) {
           thickness={6}
           color={target.name === id ? "white" : "yellow"}
         />
-      )} */}
+      )}
 
       {type === "Group" &&
         children!.length !== 0 &&
@@ -80,7 +88,7 @@ export function SceneObject({ object }: SceneObjectProps) {
               material={child.data.material}
               //material-color={hovered ? "skyblue" : ""}
             >
-              {/* <Outlines
+              <Outlines
                 visible={target.name === id || hovered}
                 transparent
                 screenspace
@@ -92,8 +100,8 @@ export function SceneObject({ object }: SceneObjectProps) {
                 renderOrder={1000}
                 thickness={6}
                 color={target.name === id ? "white" : "yellow"}
-              /> */}
-              <Edges
+              />
+              {/* <Edges
                 visible={target.name === id || hovered}
                 scale={1.05}
                 renderOrder={1000}
@@ -103,7 +111,7 @@ export function SceneObject({ object }: SceneObjectProps) {
                   color={target.name === id ? "white" : "yellow"}
                   depthTest={false}
                 />
-              </Edges>
+              </Edges> */}
             </mesh>
           );
         })}

@@ -91,6 +91,7 @@ const makeObject = (node: any) => {
         material: node.material,
         rotation: node.rotation,
         scale: node.scale,
+        color: node.material.color,
       },
     };
   }
@@ -130,7 +131,6 @@ const greenList = [
 ];
 export function Model() {
   const { nodes, materials } = useGLTF("/house-transformed.gltf") as GLTFResult;
-  console.log(nodes);
 
   const objects = Object.keys(nodes).map((name) => {
     const node = nodes[name as keyof typeof nodes];

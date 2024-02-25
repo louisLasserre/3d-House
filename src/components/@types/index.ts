@@ -9,5 +9,6 @@ export type TObjectType = {
     material: THREE.Material;
     geometry: THREE.BufferGeometry<THREE.NormalBufferAttributes>;
     position: THREE.Vector3;
+    color?: THREE.Color;
   };
 };

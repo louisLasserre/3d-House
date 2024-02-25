@@ -60,8 +60,6 @@ export default function Home() {
               />
             </EffectComposer> */}
             <Model />
-            <Box nameProp="box1" position={[2, 2, 0]} />
-            <Box nameProp="box2" />
           </Select>
 
           <Controls />
